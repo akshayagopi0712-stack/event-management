@@ -14,7 +14,7 @@ app.use("/api/events", eventRoutes);
 const registrationRoutes = require("./routes/registrationRoutes");
 app.use("/api/registrations", registrationRoutes);
 mongoose
-  .connect("mongodb://localhost:27017/event_management")
+  mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB connected");
   })
