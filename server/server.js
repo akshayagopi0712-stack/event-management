@@ -8,13 +8,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const eventRoutes = require("./routes/eventRoutes");
+// Event routes
+const eventRoutes = require("./Routes/eventRoutes");
 app.use("/api/events", eventRoutes);
 
-const registrationRoutes = require("./routes/registrationRoutes");
+// Registration routes
+const registrationRoutes = require("./Routes/registrationRoutes");
 app.use("/api/registrations", registrationRoutes);
+
+// MongoDB connection
 mongoose
-  mongoose.connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB connected");
   })
@@ -22,10 +26,14 @@ mongoose
     console.log("MongoDB connection error:", error);
   });
 
+// Test route
 app.get("/", (req, res) => {
   res.send("Event Management Backend is running");
 });
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+// Server port
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
