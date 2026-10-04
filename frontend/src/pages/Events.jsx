@@ -7,7 +7,7 @@ function Events({ setPage, setSelectedEvent }) {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/events")
+    fetch("https://event-management-1-q0x0.onrender.com/api/events")
       .then((response) => response.json())
       .then((data) => {
         setEvents(data);
